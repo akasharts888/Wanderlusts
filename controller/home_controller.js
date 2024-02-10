@@ -5,11 +5,13 @@ const { listingSchema,ReviewSchema } = require('../schema.js');
 const Review = require('../models/review');
 const User = require('../models/user');
 
+
 module.exports.home = function(req,res){
     return res.send("Hello world!");
 }
 // Index Route
 module.exports.Lists = wrapAsync(async (req,res) => {
+
     const allListingsPromise = Listing.find().exec();
     // console.log(allListing);
     allListingsPromise.then((listings) => {
@@ -19,6 +21,42 @@ module.exports.Lists = wrapAsync(async (req,res) => {
         });
     })
 });
+module.exports.Lists_Category = wrapAsync(async (req,res) => {
+    const category = req.params.name;
+    const allListingsPromise = Listing.find({'Category':category});
+    allListingsPromise.then((listings) => {
+        return res.render("Listings/category",{
+            title : "WanderLust",
+            allListing : listings
+        });
+    });
+});
+function toTitleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+}
+module.exports.Lists_Search = wrapAsync(async (req,res) => {
+    try {
+        let search_category = req.body.category;
+        search_category = toTitleCase(search_category);
+
+        const listings = await Listing.find({'Category': search_category}).exec();
+        if(listings.length === 0){
+            req.flash("error", "This place does not exist!");
+            res.redirect('/listings');
+        }else{
+            return res.render("Listings/category", {
+                title: "WanderLust",
+                allListing: listings
+            });
+        }
+    } catch (error) {
+        req.flash("error", "This place does not exist!");
+        res.redirect('/listings');
+    }
+});
+
 // Show Route
 module.exports.Show_id = wrapAsync(async (req,res) => {
     let {id} = req.params;

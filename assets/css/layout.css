@@ -1,3 +1,4 @@
+
 body{
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     display: flex;
@@ -88,9 +89,6 @@ body{
     border: none !important;
     margin-bottom: 2rem;
 }
-.edit-panel {
-    margin: 0 10rem;
-}
 /* show page */
 .show-img {
     height: 30vh;
@@ -102,21 +100,70 @@ body{
 .show-card{
     padding-left: 0;
     padding-right: 0;
+    width: 60%;
 }
 
 .fa-square-instagram{
     color: rgb(204, 26, 56);
 }
-/* .Add-panel{
-    margin: 10rem;
-} */
-.image-of-edit{
-    width: 20rem;
+.edit-panel{
+    margin-left: 10rem;
+    width: 90%;
 }
 
-/* Map */
-#map {
-    /* position: absolute; */
-    height: 400px;
-    width: 80vh;
+.image-of-edit{
+    width: 20rem;
+    border-radius: 1rem;
 }
+
+/* nav bar bottom part*/
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+}
+.filter{
+    text-align: center;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+}
+.filter p {
+    font-size: 0.8rem;
+}
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    text-align: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    padding: 1rem;
+}
+.text-info{
+    display: none;
+    color: black !important;
+}
+/* search option */
+.btn-search{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 1.5rem;
+    padding: 0 1rem 0 1rem;
+}
+.btn-search:hover{
+    background-color: #fe424d;
+    color: #fff;
+}
+.btn-search i{
+    display: inline;
+    margin-right: 0.5rem;
+}
+.search-inp{
+    border-radius: 1rem;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+}
+/* Show card */

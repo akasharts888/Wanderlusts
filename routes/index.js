@@ -79,7 +79,9 @@ router.route('/login')
 .post(passport.authenticate("local",{
     failureRedirect: '/login',
     failureFlash:true
-}), UserController.Check_login)
+}), UserController.Check_login);
+router.get('/category/:name',homeController.Lists_Category);
+router.post('/category',homeController.Lists_Search);
 // router.get('/signup',UserController.signUp);
 // router.get('/login',UserController.Login);
 // router.post('/signup',UserController.Add_User);
